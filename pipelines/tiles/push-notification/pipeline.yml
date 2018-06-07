@@ -171,7 +171,6 @@ jobs:
   - task: config-tile
     file: pipelines-repo/tasks/config-p-push-notifications/task.yml
     params:
-      DEBUG:
       OPS_MGR_HOST:
       OPS_MGR_USR:
       OPS_MGR_PWD:
