@@ -1,0 +1,77 @@
+# Token used to download the product file from Pivotal Network. Find this
+# on your Pivotal Network profile page:
+# https://network.pivotal.io/users/dashboard/edit-profile
+pivnet_token: ((pivnet_token)) # [R] PivNet Access Token
+git_token: ((github_token)) # [R] Your github token
+git_url: https://github.com/rahul-kj/pcf-concourse-pipelines # [R] Pipelines github repo
+git_branch: master
+git_username: ((github_username)) # [R] Your github username
+
+iaas_type: vsphere-esxi # azure-hyperv|vsphere-esxi|aws-xen-hvm|openstack-kvm|vcloud-esxi|google-kvm
+
+debug: false
+
+## Ops Manager installation meta data
+ops_mgr_host: ((ops_mgr_host)) # [R] Ops Manager FQDN, ex: opsmgr.example.com
+ops_mgr_usr: ((ops_mgr_usr))  # [R] Ops Manager admin user
+ops_mgr_pwd: ((ops_mgr_pwd))  # [R] Ops Manager admin password
+
+product_name: pivotal-push-notifications-service
+product_identifier: p-push-notifications
+product_version: ^1\.9\..*$
+
+singleton_jobs_az: ((singleton_jobs_az)) # [R] Place singleton jobs in an AZ
+other_azs: ((other_azs)) # [R] Balance other jobs in AZ's
+network_name: ((network_name)) # [R] Tile network name
+service_network_name: ((service_network_name)) # [R] Services network name
+
+
+
+apns_proxy: None
+apns_proxy_socks_host: ''
+apns_proxy_socks_port: ''
+baidu_proxy: None
+baidu_proxy_http_host: ''
+baidu_proxy_http_port: ''
+baidu_proxy_socks_host: ''
+baidu_proxy_socks_port: ''
+create_platform_whitelist: 'ios, android, android-fcm, android-baidu'
+deployment_type: 'Development'
+fcm_proxy: None
+fcm_proxy_http_host: ''
+fcm_proxy_http_port: ''
+fcm_proxy_socks_host: ''
+fcm_proxy_socks_port: ''
+gcm_proxy: None
+gcm_proxy_http_host: ''
+gcm_proxy_http_port: ''
+gcm_proxy_socks_host: ''
+gcm_proxy_socks_port: ''
+mysql: MySQL Service
+mysql_external_database: ''
+mysql_external_host: ''
+mysql_external_password: ''
+mysql_external_port: ''
+mysql_external_username: ''
+mysql_internal_service_plan: push
+redis_analytics: Redis Service
+redis_analytics_external_db_number: 0
+redis_analytics_external_host: ''
+redis_analytics_external_password: ''
+redis_analytics_external_port: ''
+redis_analytics_internal_service_plan: dedicated-vm
+push_push_notifications_api_db_encryption_key: ''
+push_push_notifications_default_system_tenant_name: ''
+push_push_notifications_instances: ''
+push_push_notifications_instance_type: ''
+delete_push_notifications_instances: ''
+delete_push_notifications_instance_type: ''
+
+errands_to_disable: # (broker-registrar|multitenant-smoke-tests|register-on-demand-service-broker|dedicated-instance-smoke-tests|upgrade-all-service-instances)
+
+concourse_user: ((concourse_user))
+concourse_pwd: ((concourse_pwd))
+concourse_url: ((concourse_url))
+pipeline-name: install-rabbitmq
+team-name: ((team-name))
+upgrade-pipeline-name: upgrade-rabbitmq
