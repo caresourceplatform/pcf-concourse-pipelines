@@ -3,7 +3,7 @@
 # https://network.pivotal.io/users/dashboard/edit-profile
 pivnet_token: ((pivnet_token)) # [R] PivNet Access Token
 git_token: ((github_token)) # [R] Your github token
-git_url: https://github.com/rahul-kj/pcf-concourse-pipelines # [R] Pipelines github repo
+git_url: https://github.com/rahul-kj/pcf-concourse-pipelines  # [R] Pipelines github repo
 git_branch: master
 git_username: ((github_username)) # [R] Your github username
 
@@ -72,6 +72,6 @@ errands_to_disable: # (broker-registrar|multitenant-smoke-tests|register-on-dema
 concourse_user: ((concourse_user))
 concourse_pwd: ((concourse_pwd))
 concourse_url: ((concourse_url))
-pipeline-name: install-rabbitmq
+pipeline-name: install-push-notifications
 team-name: ((team-name))
-upgrade-pipeline-name: upgrade-rabbitmq
+upgrade-pipeline-name: upgrade-push-notifications

@@ -171,71 +171,54 @@ jobs:
   - task: config-tile
     file: pipelines-repo/tasks/config-p-push-notifications/task.yml
     params:
-      DEBUG: ((debug))
-      OPS_MGR_HOST: ((ops_mgr_host))
-      OPS_MGR_USR: ((ops_mgr_usr))
-      OPS_MGR_PWD: ((ops_mgr_pwd))
-      NETWORK_NAME: ((network_name))
-      SERVICE_NETWORK_NAME: ((service_network_name))
-      OTHER_AZS: ((other_azs))
-      SINGLETON_JOBS_AZ: ((singleton_jobs_az))
-      PRODUCT_IDENTIFIER: ((product_identifier))
-      ON_DEMAND_BROKER_GLOBAL_SERVICE_INSTANCE_QUOTA: ((on_demand_broker_global_service_instance_quota))
-      ON_DEMAND_BROKER_STATIC_IPS: ((on_demand_broker_static_ips))
-      DISK_ALARM_THRESHOLD: ((disk_alarm_threshold))
-      GLOBAL_SETTINGS_SECURE_BINDINGS: ((global_settings_secure_bindings))
-      GLOBAL_SETTINGS_SHAREABLE_INSTANCES: ((global_settings_shareable_instances))
-      METRICS_POLLING_INTERVAL: ((metrics_polling_interval))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR: ((on_demand_broker_plan_10_selector))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_CF_SERVICE_ACCESS: ((on_demand_broker_plan_10_selector_enabled_cf_service_access))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_DESCRIPTION: ((on_demand_broker_plan_10_selector_enabled_description))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_DISK_LIMIT_ACKNOWLEDGEMENT: ((on_demand_broker_plan_10_selector_enabled_disk_limit_acknowledgement))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_FEATURES: ((on_demand_broker_plan_10_selector_enabled_features))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_INSTANCE_QUOTA: ((on_demand_broker_plan_10_selector_enabled_instance_quota))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_NAME: ((on_demand_broker_plan_10_selector_enabled_name))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_RABBITMQ_AZ_PLACEMENT: ((on_demand_broker_plan_10_selector_enabled_rabbitmq_az_placement))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_RABBITMQ_CLUSTER_PARTITION_HANDLING_STRATEGY: ((on_demand_broker_plan_10_selector_enabled_rabbitmq_cluster_partition_handling_strategy))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_RABBITMQ_NUMBER_OF_NODES: ((on_demand_broker_plan_10_selector_enabled_rabbitmq_number_of_nodes))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_RABBITMQ_PERSISTENT_DISK_TYPE: ((on_demand_broker_plan_10_selector_enabled_rabbitmq_persistent_disk_type))
-      ON_DEMAND_BROKER_PLAN_10_SELECTOR_ENABLED_RABBITMQ_VM_TYPE: ((on_demand_broker_plan_10_selector_enabled_rabbitmq_vm_type))
-      SYSLOG_SELECTOR: ((syslog_selector))
-      SYSLOG_SELECTOR_ENABLED_ADDRESS: ((syslog_selector_enabled_address))
-      SYSLOG_SELECTOR_ENABLED_PORT: ((syslog_selector_enabled_port))
-      SYSLOG_SELECTOR_ENABLED_SYSLOG_CA_CERT: ((syslog_selector_enabled_syslog_ca_cert))
-      SYSLOG_SELECTOR_ENABLED_SYSLOG_FORMAT: ((syslog_selector_enabled_syslog_format))
-      SYSLOG_SELECTOR_ENABLED_SYSLOG_PERMITTED_PEER: ((syslog_selector_enabled_syslog_permitted_peer))
-      SYSLOG_SELECTOR_ENABLED_SYSLOG_TLS: ((syslog_selector_enabled_syslog_tls))
-      SYSLOG_SELECTOR_ENABLED_SYSLOG_TRANSPORT: ((syslog_selector_enabled_syslog_transport))
-      RABBITMQ_BROKER_DNS_HOST: ((rabbitmq_broker_dns_host))
-      RABBITMQ_BROKER_OPERATOR_SET_POLICY_ENABLED: ((rabbitmq_broker_operator_set_policy_enabled))
-      RABBITMQ_BROKER_POLICY_DEFINITION: ((rabbitmq_broker_policy_definition))
-      RABBITMQ_BROKER_STATIC_IPS: ((rabbitmq_broker_static_ips))
-      RABBITMQ_HAPROXY_STATIC_IPS: ((rabbitmq_haproxy_static_ips))
-      RABBITMQ_SERVER_CLUSTER_PARTITION_HANDLING: ((rabbitmq_server_cluster_partition_handling))
-      RABBITMQ_SERVER_CONFIG: ((rabbitmq_server_config))
-      RABBITMQ_SERVER_COOKIE: ((rabbitmq_server_cookie))
-      RABBITMQ_SERVER_PLUGINS: ((rabbitmq_server_plugins))
-      RABBITMQ_SERVER_PORTS: ((rabbitmq_server_ports))
-      RABBITMQ_SERVER_SSL_CERT_PEM: ((rabbitmq_server_ssl_cert_pem))
-      RABBITMQ_SERVER_SSL_PRIVATE_KEY_PEM: ((rabbitmq_server_ssl_private_key_pem))
-      RABBITMQ_SERVER_SERVER_ADMIN_USERNAME: ((rabbitmq_server_server_admin_username))
-      RABBITMQ_SERVER_SERVER_ADMIN_PASSWORD: ((rabbitmq_server_server_admin_password))
-      RABBITMQ_SERVER_SSL_CACERT: ((rabbitmq_server_ssl_cacert))
-      RABBITMQ_SERVER_SSL_FAIL_IF_NO_PEER_CERT: ((rabbitmq_server_ssl_fail_if_no_peer_cert))
-      RABBITMQ_SERVER_SSL_VERIFICATION_DEPTH: ((rabbitmq_server_ssl_verification_depth))
-      RABBITMQ_SERVER_SSL_VERIFY: ((rabbitmq_server_ssl_verify))
-      RABBITMQ_SERVER_SSL_VERSIONS: ((rabbitmq_server_ssl_versions))
-      RABBITMQ_SERVER_STATIC_IPS: ((rabbitmq_server_static_ips))
-      RABBITMQ_SERVER_INSTANCES: ((rabbitmq_server_instances))
-      RABBITMQ_SERVER_INSTANCE_TYPE: ((rabbitmq_server_instance_type))
-      RABBITMQ_SERVER_PERSISTENT_DISK_MB: ((rabbitmq_server_persistent_disk_mb))
-      RABBITMQ_HAPROXY_INSTANCES: ((rabbitmq_haproxy_instances))
-      RABBITMQ_HAPROXY_INSTANCE_TYPE: ((rabbitmq_haproxy_instance_type))
-      RABBITMQ_BROKER_INSTANCES: ((rabbitmq_broker_instances))
-      RABBITMQ_BROKER_INSTANCE_TYPE: ((rabbitmq_broker_instance_type))
-      ON_DEMAND_BROKER_INSTANCES: ((on_demand_broker_instances))
-      ON_DEMAND_BROKER_INSTANCE_TYPE: ((on_demand_broker_instance_type))
-      ON_DEMAND_BROKER_PERSISTENT_DISK_MB: ((on_demand_broker_persistent_disk_mb))
+      DEBUG:
+      OPS_MGR_HOST:
+      OPS_MGR_USR:
+      OPS_MGR_PWD:
+      NETWORK_NAME:
+      SERVICE_NETWORK_NAME:
+      OTHER_AZS:
+      SINGLETON_JOBS_AZ:
+      PRODUCT_IDENTIFIER:
+      APNS_PROXY:
+      APNS_PROXY_SOCKS_HOST:
+      APNS_PROXY_SOCKS_PORT:
+      BAIDU_PROXY:
+      BAIDU_PROXY_HTTP_HOST:
+      BAIDU_PROXY_HTTP_PORT:
+      BAIDU_PROXY_SOCKS_HOST:
+      BAIDU_PROXY_SOCKS_PORT:
+      CREATE_PLATFORM_WHITELIST:
+      DEPLOYMENT_TYPE:
+      FCM_PROXY:
+      FCM_PROXY_HTTP_HOST:
+      FCM_PROXY_HTTP_PORT:
+      FCM_PROXY_SOCKS_HOST:
+      FCM_PROXY_SOCKS_PORT:
+      GCM_PROXY:
+      GCM_PROXY_HTTP_HOST:
+      GCM_PROXY_HTTP_PORT:
+      GCM_PROXY_SOCKS_HOST:
+      GCM_PROXY_SOCKS_PORT:
+      MYSQL:
+      MYSQL_EXTERNAL_DATABASE:
+      MYSQL_EXTERNAL_HOST:
+      MYSQL_EXTERNAL_PASSWORD:
+      MYSQL_EXTERNAL_PORT:
+      MYSQL_EXTERNAL_USERNAME:
+      MYSQL_INTERNAL_SERVICE_PLAN:
+      REDIS_ANALYTICS:
+      REDIS_ANALYTICS_EXTERNAL_DB_NUMBER:
+      REDIS_ANALYTICS_EXTERNAL_HOST:
+      REDIS_ANALYTICS_EXTERNAL_PASSWORD:
+      REDIS_ANALYTICS_EXTERNAL_PORT:
+      REDIS_ANALYTICS_INTERNAL_SERVICE_PLAN:
+      PUSH_PUSH_NOTIFICATIONS_API_DB_ENCRYPTION_KEY:
+      PUSH_PUSH_NOTIFICATIONS_DEFAULT_SYSTEM_TENANT_NAME:
+      PUSH_PUSH_NOTIFICATIONS_INSTANCES:
+      PUSH_PUSH_NOTIFICATIONS_INSTANCE_TYPE:
+      DELETE_PUSH_NOTIFICATIONS_INSTANCES:
+      DELETE_PUSH_NOTIFICATIONS_INSTANCE_TYPE:
 
 - name: disable-errands
   plan:
