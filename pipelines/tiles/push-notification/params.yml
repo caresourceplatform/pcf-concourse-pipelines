@@ -6,7 +6,7 @@ git_token: ((github_token)) # [R] Your github token
 git_url: https://github.com/caresourceplatform/pcf-concourse-pipelines  # [R] Pipelines github repo
 git_branch: master
 git_username: ((github_username)) # [R] Your github username
-
+root_ca: ((root_ca))
 iaas_type: vsphere-esxi # azure-hyperv|vsphere-esxi|aws-xen-hvm|openstack-kvm|vcloud-esxi|google-kvm
 
 debug: false
