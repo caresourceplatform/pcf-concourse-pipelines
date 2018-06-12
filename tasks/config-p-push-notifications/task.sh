@@ -169,10 +169,10 @@ resources_config="{
 }"
 
 network_config=$($JQ_CMD -n \
-  --arg network_name "$NETWORK_NAME" \ 
-  --arg other_azs "$OTHER_AZS" \ 
-  --arg singleton_az "$SINGLETON_JOBS_AZ" \ 
-  --arg service_network_name "$SERVICE_NETWORK_NAME" \ 
+  --arg network_name "$NETWORK_NAME" \
+  --arg other_azs "$OTHER_AZS" \
+  --arg singleton_az "$SINGLETON_JOBS_AZ" \
+  --arg service_network_name "$SERVICE_NETWORK_NAME" \
 '
   {
     "network": {
