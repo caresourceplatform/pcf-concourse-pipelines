@@ -12,6 +12,8 @@ OM_CMD=./om-cli/om-linux
 chmod +x ./jq/jq-linux64
 JQ_CMD=./jq/jq-linux64
 
+export 
+
 properties_config=$($JQ_CMD -n \
   --arg apns_proxy "${APNS_PROXY:-"None"}" \
   --arg apns_proxy_socks_host "${APNS_PROXY_SOCKS_HOST}" \
