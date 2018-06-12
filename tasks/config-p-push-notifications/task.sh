@@ -163,10 +163,14 @@ properties_config=$($JQ_CMD -n \
 }'
 )
 
+echo $properties_config
+
 resources_config="{
   \"push-push-notifications\": {\"instances\": ${PUSH_PUSH_NOTIFICATIONS_INSTANCES:-1}, \"instance_type\": { \"id\": \"${PUSH_PUSH_NOTIFICATIONS_INSTANCE_TYPE:-micro}\"}},
   \"delete-push-notifications\": {\"instances\": ${DELETE_PUSH_NOTIFICATIONS_INSTANCES:-1}, \"instance_type\": { \"id\": \"${DELETE_PUSH_NOTIFICATIONS_INSTANCE_TYPE:-micro}\"}}
 }"
+
+echo $resources_config
 
 network_config=$($JQ_CMD -n \
   --arg network_name "$NETWORK_NAME" \
@@ -188,6 +192,8 @@ network_config=$($JQ_CMD -n \
   }
 '
 )
+
+echo $network_config
 
 $OM_CMD \
   --target https://$OPS_MGR_HOST \
