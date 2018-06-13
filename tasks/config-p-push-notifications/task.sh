@@ -70,7 +70,9 @@ properties_config=$($JQ_CMD -n \
     "value": ($create_platform_whitelist | split(",") )
   },
   ".push-push-notifications.api_db_encryption_key": {
-    "value": $push_push_notifications_api_db_encryption_key
+    "value": {
+      "secret": $push_push_notifications_api_db_encryption_key
+    }
   },
   ".push-push-notifications.default_system_tenant_name": {
     "value": $push_push_notifications_default_system_tenant_name
@@ -94,7 +96,9 @@ if $mysql=="External" then{
     "value": $mysql_external_username
   },
   ".properties.mysql.external.password": {
-    "value": $mysql_external_password
+    "value":{
+      "secret": $mysql_external_password
+      }
   },
   ".properties.mysql.external.database": {
     "value": $mysql_external_database
@@ -115,7 +119,9 @@ if $redis_analytics=="External" then{
     "value": $redis_analytics_external_port
   },
   ".properties.redis_analytics.external.password": {
-    "value":$redis_analytics_external_password
+    "value":{
+      "secret":$redis_analytics_external_password
+      }
   },
   ".properties.redis_analytics.external.db_number": {
     "value": $redis_analytics_external_db_number
