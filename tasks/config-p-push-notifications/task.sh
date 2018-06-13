@@ -83,7 +83,7 @@ properties_config=$($JQ_CMD -n \
   }
 }
 +
-if $mysql=="External"{
+if $mysql=="External" then{
   ".properties.mysql.external.host": {
     "value": $mysql_external_host
   },
@@ -100,14 +100,14 @@ if $mysql=="External"{
     "value": $mysql_external_database
   }
 }
-else{
+else {
  ".properties.mysql.internal.service_plan": {
     "value": $mysql_internal_service_plan
   }
 }
 end
 +
-if $redis_analytics=="External"{
+if $redis_analytics=="External" then{
   ".properties.redis_analytics.external.host": {
     "value": $redis_analytics_external_host
   },
@@ -121,14 +121,14 @@ if $redis_analytics=="External"{
     "value": $redis_analytics_external_db_number
   }
 }
-else{  
+else {  
   ".properties.redis_analytics.internal.service_plan": {
     "value": $redis_analytics_internal_service_plan
   }
 }
 end
 +
-if $gcm_proxy== "HTTP" {
+if $gcm_proxy== "HTTP" then {
     ".properties.gcm_proxy.http.host": {
     "value": $gcm_proxy_http_host
   },
@@ -136,7 +136,7 @@ if $gcm_proxy== "HTTP" {
     "value": $gcm_proxy_http_port
   }
 }
-elseif $gcm_proxy== "SOCKS" {
+elseif $gcm_proxy== "SOCKS" then {
   ".properties.gcm_proxy.socks.host": {
     "value": $gcm_proxy_socks_host
   },
@@ -147,7 +147,7 @@ elseif $gcm_proxy== "SOCKS" {
 else .
 end
 +
-if $fcm_proxy== "HTTP" {
+if $fcm_proxy== "HTTP" then {
    ".properties.fcm_proxy.http.host": {
     "value": $fcm_proxy_http_host
   },
@@ -155,7 +155,7 @@ if $fcm_proxy== "HTTP" {
     "value": $fcm_proxy_http_port
   }
 }
-elseif $fcm_proxy== "SOCKS" {
+elseif $fcm_proxy== "SOCKS" then {
   ".properties.fcm_proxy.socks.host": {
     "value": $fcm_proxy_socks_host
   },
@@ -166,7 +166,7 @@ elseif $fcm_proxy== "SOCKS" {
 else .
 end
 +
-if $baidu_proxy== "HTTP" {
+if $baidu_proxy== "HTTP" then {
   ".properties.baidu_proxy.http.host": {
     "value": $baidu_proxy_http_host
   },
@@ -174,7 +174,7 @@ if $baidu_proxy== "HTTP" {
     "value": $baidu_proxy_http_port
   }
 }
-elseif $baidu_proxy== "SOCKS" {
+elseif $baidu_proxy== "SOCKS" then {
    ".properties.baidu_proxy.socks.host": {
     "value": $baidu_proxy_socks_host
   },
@@ -185,7 +185,7 @@ elseif $baidu_proxy== "SOCKS" {
 else .
 end
 +
-if $apns_proxy== "SOCKS" {
+if $apns_proxy== "SOCKS" then {
   
   ".properties.apns_proxy.socks.host": {
     "value": $apns_proxy_socks_host
