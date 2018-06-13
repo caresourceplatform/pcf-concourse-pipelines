@@ -54,56 +54,14 @@ properties_config=$($JQ_CMD -n \
   ".properties.gcm_proxy": {
     "value": $gcm_proxy
   },
-  ".properties.gcm_proxy.http.host": {
-    "value": $gcm_proxy_http_host
-  },
-  ".properties.gcm_proxy.http.port": {
-    "value": $gcm_proxy_http_port
-  },
-  ".properties.gcm_proxy.socks.host": {
-    "value": $gcm_proxy_socks_host
-  },
-  ".properties.gcm_proxy.socks.port": {
-    "value": $gcm_proxy_socks_port
-  },
   ".properties.fcm_proxy": {
     "value": $fcm_proxy
-  },
-  ".properties.fcm_proxy.http.host": {
-    "value": $fcm_proxy_http_host
-  },
-  ".properties.fcm_proxy.http.port": {
-    "value": $fcm_proxy_http_port
-  },
-  ".properties.fcm_proxy.socks.host": {
-    "value": $fcm_proxy_socks_host
-  },
-  ".properties.fcm_proxy.socks.port": {
-    "value": $fcm_proxy_socks_port
   },
   ".properties.baidu_proxy": {
     "value": $baidu_proxy
   },
-  ".properties.baidu_proxy.http.host": {
-    "value": $baidu_proxy_http_host
-  },
-  ".properties.baidu_proxy.http.port": {
-    "value": $baidu_proxy_http_port
-  },
-  ".properties.baidu_proxy.socks.host": {
-    "value": $baidu_proxy_socks_host
-  },
-  ".properties.baidu_proxy.socks.port": {
-    "value": $baidu_proxy_socks_port
-  },
   ".properties.apns_proxy": {
     "value": $apns_proxy
-  },
-  ".properties.apns_proxy.socks.host": {
-    "value": $apns_proxy_socks_host
-  },
-  ".properties.apns_proxy.socks.port": {
-    "value": $apns_proxy_socks_port
   },
   ".properties.deployment_type": {
     "value": $deployment_type
@@ -111,12 +69,21 @@ properties_config=$($JQ_CMD -n \
   ".properties.create_platform_whitelist": {
     "value": ($create_platform_whitelist | split(",") )
   },
+  ".push-push-notifications.api_db_encryption_key": {
+    "value": $push_push_notifications_api_db_encryption_key
+  },
+  ".push-push-notifications.default_system_tenant_name": {
+    "value": $push_push_notifications_default_system_tenant_name
+  },
   ".properties.mysql": {
     "value": $mysql
   },
-  ".properties.mysql.internal.service_plan": {
-    "value": $mysql_internal_service_plan
-  },
+    ".properties.redis_analytics": {
+    "value": $redis_analytics
+  }
+}
++
+if $mysql=="External"{
   ".properties.mysql.external.host": {
     "value": $mysql_external_host
   },
@@ -131,13 +98,16 @@ properties_config=$($JQ_CMD -n \
   },
   ".properties.mysql.external.database": {
     "value": $mysql_external_database
-  },
-  ".properties.redis_analytics": {
-    "value": $redis_analytics
-  },
-  ".properties.redis_analytics.internal.service_plan": {
-    "value": $redis_analytics_internal_service_plan
-  },
+  }
+}
+else{
+ ".properties.mysql.internal.service_plan": {
+    "value": $mysql_internal_service_plan
+  }
+}
+end
++
+if $redis_analytics=="External"{
   ".properties.redis_analytics.external.host": {
     "value": $redis_analytics_external_host
   },
@@ -149,14 +119,84 @@ properties_config=$($JQ_CMD -n \
   },
   ".properties.redis_analytics.external.db_number": {
     "value": $redis_analytics_external_db_number
-  },
-  ".push-push-notifications.api_db_encryption_key": {
-    "value": $push_push_notifications_api_db_encryption_key
-  },
-  ".push-push-notifications.default_system_tenant_name": {
-    "value": $push_push_notifications_default_system_tenant_name
   }
-}'
+}
+else{  
+  ".properties.redis_analytics.internal.service_plan": {
+    "value": $redis_analytics_internal_service_plan
+  }
+}
+end
++
+if $gcm_proxy== "HTTP" {
+    ".properties.gcm_proxy.http.host": {
+    "value": $gcm_proxy_http_host
+  },
+  ".properties.gcm_proxy.http.port": {
+    "value": $gcm_proxy_http_port
+  }
+}
+elseif $gcm_proxy== "SOCKS" {
+  ".properties.gcm_proxy.socks.host": {
+    "value": $gcm_proxy_socks_host
+  },
+  ".properties.gcm_proxy.socks.port": {
+    "value": $gcm_proxy_socks_port
+  }
+}
+else .
+end
++
+if $fcm_proxy== "HTTP" {
+   ".properties.fcm_proxy.http.host": {
+    "value": $fcm_proxy_http_host
+  },
+  ".properties.fcm_proxy.http.port": {
+    "value": $fcm_proxy_http_port
+  }
+}
+elseif $fcm_proxy== "SOCKS" {
+  ".properties.fcm_proxy.socks.host": {
+    "value": $fcm_proxy_socks_host
+  },
+  ".properties.fcm_proxy.socks.port": {
+    "value": $fcm_proxy_socks_port
+  }
+}
+else .
+end
++
+if $baidu_proxy== "HTTP" {
+  ".properties.baidu_proxy.http.host": {
+    "value": $baidu_proxy_http_host
+  },
+  ".properties.baidu_proxy.http.port": {
+    "value": $baidu_proxy_http_port
+  }
+}
+elseif $baidu_proxy== "SOCKS" {
+   ".properties.baidu_proxy.socks.host": {
+    "value": $baidu_proxy_socks_host
+  },
+  ".properties.baidu_proxy.socks.port": {
+    "value": $baidu_proxy_socks_port
+  }
+}
+else .
+end
++
+if $apns_proxy== "SOCKS" {
+  
+  ".properties.apns_proxy.socks.host": {
+    "value": $apns_proxy_socks_host
+  },
+  ".properties.apns_proxy.socks.port": {
+    "value": $apns_proxy_socks_port
+  }
+}
+else .
+end
+'
 )
 
 echo $properties_config
