@@ -208,9 +208,9 @@ end
 echo $properties_config
 
 resources_config="{
-  \"push-push-notifications\": {\"instances\": ${PUSH_PUSH_NOTIFICATIONS_INSTANCES:-1}, \"instance_type\": { \"id\": \"${PUSH_PUSH_NOTIFICATIONS_INSTANCE_TYPE:-micro}\"}}
-  }"
+    }"
 #\"delete-push-notifications\": {\"instances\": ${DELETE_PUSH_NOTIFICATIONS_INSTANCES:-1}, \"instance_type\": { \"id\": \"${DELETE_PUSH_NOTIFICATIONS_INSTANCE_TYPE:-micro}\"}}
+#\"push-push-notifications\": {\"instances\": ${PUSH_PUSH_NOTIFICATIONS_INSTANCES:-1}, \"instance_type\": { \"id\": \"${PUSH_PUSH_NOTIFICATIONS_INSTANCE_TYPE:-micro}\"}}
 
 echo $resources_config
 
