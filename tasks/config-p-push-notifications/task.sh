@@ -136,7 +136,7 @@ if $gcm_proxy== "HTTP" then {
     "value": $gcm_proxy_http_port
   }
 }
-elseif $gcm_proxy== "SOCKS" then {
+elif $gcm_proxy== "SOCKS" then {
   ".properties.gcm_proxy.socks.host": {
     "value": $gcm_proxy_socks_host
   },
@@ -155,7 +155,7 @@ if $fcm_proxy== "HTTP" then {
     "value": $fcm_proxy_http_port
   }
 }
-elseif $fcm_proxy== "SOCKS" then {
+elif $fcm_proxy== "SOCKS" then {
   ".properties.fcm_proxy.socks.host": {
     "value": $fcm_proxy_socks_host
   },
@@ -174,7 +174,7 @@ if $baidu_proxy== "HTTP" then {
     "value": $baidu_proxy_http_port
   }
 }
-elseif $baidu_proxy== "SOCKS" then {
+elif $baidu_proxy== "SOCKS" then {
    ".properties.baidu_proxy.socks.host": {
     "value": $baidu_proxy_socks_host
   },
