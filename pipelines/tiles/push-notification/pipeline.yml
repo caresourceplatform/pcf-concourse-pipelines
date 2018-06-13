@@ -173,53 +173,53 @@ jobs:
   - task: config-tile
     file: pipelines-repo/tasks/config-p-push-notifications/task.yml
     params:
-      OPS_MGR_HOST:
-      OPS_MGR_USR:
-      OPS_MGR_PWD:
-      NETWORK_NAME:
-      SERVICE_NETWORK_NAME:
-      OTHER_AZS:
-      SINGLETON_JOBS_AZ:
-      PRODUCT_IDENTIFIER:
-      APNS_PROXY:
-      APNS_PROXY_SOCKS_HOST:
-      APNS_PROXY_SOCKS_PORT:
-      BAIDU_PROXY:
-      BAIDU_PROXY_HTTP_HOST:
-      BAIDU_PROXY_HTTP_PORT:
-      BAIDU_PROXY_SOCKS_HOST:
-      BAIDU_PROXY_SOCKS_PORT:
-      CREATE_PLATFORM_WHITELIST:
-      DEPLOYMENT_TYPE:
-      FCM_PROXY:
-      FCM_PROXY_HTTP_HOST:
-      FCM_PROXY_HTTP_PORT:
-      FCM_PROXY_SOCKS_HOST:
-      FCM_PROXY_SOCKS_PORT:
-      GCM_PROXY:
-      GCM_PROXY_HTTP_HOST:
-      GCM_PROXY_HTTP_PORT:
-      GCM_PROXY_SOCKS_HOST:
-      GCM_PROXY_SOCKS_PORT:
-      MYSQL:
-      MYSQL_EXTERNAL_DATABASE:
-      MYSQL_EXTERNAL_HOST:
-      MYSQL_EXTERNAL_PASSWORD:
-      MYSQL_EXTERNAL_PORT:
-      MYSQL_EXTERNAL_USERNAME:
-      MYSQL_INTERNAL_SERVICE_PLAN:
-      REDIS_ANALYTICS:
-      REDIS_ANALYTICS_EXTERNAL_DB_NUMBER:
-      REDIS_ANALYTICS_EXTERNAL_HOST:
-      REDIS_ANALYTICS_EXTERNAL_PASSWORD:
-      REDIS_ANALYTICS_EXTERNAL_PORT:
-      REDIS_ANALYTICS_INTERNAL_SERVICE_PLAN:
-      PUSH_PUSH_NOTIFICATIONS_API_DB_ENCRYPTION_KEY:
-      PUSH_PUSH_NOTIFICATIONS_DEFAULT_SYSTEM_TENANT_NAME:
-      PUSH_PUSH_NOTIFICATIONS_INSTANCES:
-      PUSH_PUSH_NOTIFICATIONS_INSTANCE_TYPE:
-      DELETE_PUSH_NOTIFICATIONS_INSTANCES:
-      DELETE_PUSH_NOTIFICATIONS_INSTANCE_TYPE:
+      OPS_MGR_HOST: ((ops_mgr_host))
+      OPS_MGR_USR: ((ops_mgr_usr))
+      OPS_MGR_PWD: ((ops_mgr_pwd)) 
+      NETWORK_NAME: ((network_name))
+      SERVICE_NETWORK_NAME: ((service_network_name))
+      OTHER_AZS: ((other_azs))
+      SINGLETON_JOBS_AZ: ((singleton_jobs_az))
+      PRODUCT_IDENTIFIER: p-push-notification
+      APNS_PROXY: ((apns_proxy)) ((apns_proxy)) 
+      APNS_PROXY_SOCKS_HOST: ((apns_proxy_socks_host)) 
+      APNS_PROXY_SOCKS_PORT: ((apns_proxy_socks_port))
+      BAIDU_PROXY: ((baidu_proxy))
+      BAIDU_PROXY_HTTP_HOST: ((baidu_proxy_http_host))
+      BAIDU_PROXY_HTTP_PORT: ((baidu_proxy_http_port))
+      BAIDU_PROXY_SOCKS_HOST: ((baidu_proxy_socks_host))
+      BAIDU_PROXY_SOCKS_PORT: ((baidu_proxy_socks_port))
+      CREATE_PLATFORM_WHITELIST: ((create_platform_whitelist))
+      DEPLOYMENT_TYPE: ((deployment_type))
+      FCM_PROXY: ((fcm_proxy))
+      FCM_PROXY_HTTP_HOST: ((fcm_proxy_http_host))
+      FCM_PROXY_HTTP_PORT: ((fcm_proxy_http_port))
+      FCM_PROXY_SOCKS_HOST: ((fcm_proxy_socks_host))
+      FCM_PROXY_SOCKS_PORT: ((fcm_proxy_socks_port))
+      GCM_PROXY: ((gcm_proxy))
+      GCM_PROXY_HTTP_HOST: ((gcm_proxy_http_host))
+      GCM_PROXY_HTTP_PORT: ((gcm_proxy_http_port))
+      GCM_PROXY_SOCKS_HOST: ((gcm_proxy_socks_host))
+      GCM_PROXY_SOCKS_PORT: ((gcm_proxy_socks_port))
+      MYSQL: ((mysql))
+      MYSQL_EXTERNAL_DATABASE: ((mysql_external_database))
+      MYSQL_EXTERNAL_HOST: ((mysql_external_host))
+      MYSQL_EXTERNAL_PASSWORD: ((mysql_external_password))
+      MYSQL_EXTERNAL_PORT: ((mysql_external_port))
+      MYSQL_EXTERNAL_USERNAME: ((mysql_external_username))
+      MYSQL_INTERNAL_SERVICE_PLAN: ((mysql_internal_service_plan))
+      REDIS_ANALYTICS: ((redis_analytics))
+      REDIS_ANALYTICS_EXTERNAL_DB_NUMBER: ((redis_analytics_external_db_number))
+      REDIS_ANALYTICS_EXTERNAL_HOST: ((redis_analytics_external_host))
+      REDIS_ANALYTICS_EXTERNAL_PASSWORD: ((redis_analytics_external_password))
+      REDIS_ANALYTICS_EXTERNAL_PORT: ((redis_analytics_external_port))
+      REDIS_ANALYTICS_INTERNAL_SERVICE_PLAN: ((redis_analytics_internal_service_plan))
+      PUSH_PUSH_NOTIFICATIONS_API_DB_ENCRYPTION_KEY: ((push_push_notifications_api_db_encryption_key))
+      PUSH_PUSH_NOTIFICATIONS_DEFAULT_SYSTEM_TENANT_NAME: ((push_push_notifications_default_system_tenant_name))
+      PUSH_PUSH_NOTIFICATIONS_INSTANCES: ((push_push_notifications_instances))
+      PUSH_PUSH_NOTIFICATIONS_INSTANCE_TYPE: ((push_push_notifications_instance_type))
+      DELETE_PUSH_NOTIFICATIONS_INSTANCES: ((delete_push_notifications_instances))
+      DELETE_PUSH_NOTIFICATIONS_INSTANCE_TYPE: ((delete_push_notifications_instance_type))
 
 - name: disable-errands
   plan:
