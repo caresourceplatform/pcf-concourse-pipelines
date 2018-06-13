@@ -151,7 +151,7 @@ properties_config=$($JQ_CMD -n \
     "value": $redis_analytics_external_db_number
   },
   ".push-push-notifications.api_db_encryption_key": {
-    "value": $push-push-notifications_api_db_encryption_key
+    "value": $push_push_notifications_api_db_encryption_key
   },
   ".push-push-notifications.default_system_tenant_name": {
     "value": $push_push_notifications_default_system_tenant_name
