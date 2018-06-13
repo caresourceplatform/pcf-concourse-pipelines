@@ -181,7 +181,7 @@ jobs:
       OTHER_AZS: ((other_azs))
       SINGLETON_JOBS_AZ: ((singleton_jobs_az))
       PRODUCT_IDENTIFIER: ((product_identifier))
-      APNS_PROXY: ((apns_proxy)) ((apns_proxy)) 
+      APNS_PROXY: ((apns_proxy)) 
       APNS_PROXY_SOCKS_HOST: ((apns_proxy_socks_host)) 
       APNS_PROXY_SOCKS_PORT: ((apns_proxy_socks_port))
       BAIDU_PROXY: ((baidu_proxy))
