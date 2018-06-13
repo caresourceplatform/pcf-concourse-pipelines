@@ -35,7 +35,7 @@ baidu_proxy_http_host: ''
 baidu_proxy_http_port: ''
 baidu_proxy_socks_host: ''
 baidu_proxy_socks_port: ''
-create_platform_whitelist: 'ios, android, android-fcm, android-baidu'
+create_platform_whitelist: [ios, android, android-fcm, android-baidu]
 deployment_type: 'Development'
 fcm_proxy: None
 fcm_proxy_http_host: ''
