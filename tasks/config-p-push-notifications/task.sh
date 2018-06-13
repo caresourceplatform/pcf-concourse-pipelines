@@ -109,7 +109,7 @@ properties_config=$($JQ_CMD -n \
     "value": $deployment_type
   },
   ".properties.create_platform_whitelist": {
-    "value": $create_platform_whitelist
+    "value": ($create_platform_whitelist | split(",") )
   },
   ".properties.mysql": {
     "value": $mysql
