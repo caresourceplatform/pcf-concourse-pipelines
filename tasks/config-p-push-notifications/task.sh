@@ -46,7 +46,7 @@ properties_config=$($JQ_CMD -n \
   --arg redis_analytics_external_host "${REDIS_ANALYTICS_EXTERNAL_HOST}" \
   --arg redis_analytics_external_password "${REDIS_ANALYTICS_EXTERNAL_PASSWORD}" \
   --arg redis_analytics_external_port "${REDIS_ANALYTICS_EXTERNAL_PORT}" \
-  --arg redis_analytics_internal_service_plan "${REDIS_ANALYTICS_INTERNAL_SERVICE_PLAN:-"dedicated-vm"}" \
+  --arg redis_analytics_internal_service_plan "${REDIS_ANALYTICS_INTERNAL_SERVICE_PLAN:-"push"}" \
   --arg push_push_notifications_api_db_encryption_key "${PUSH_PUSH_NOTIFICATIONS_API_DB_ENCRYPTION_KEY}" \
   --arg push_push_notifications_default_system_tenant_name "${PUSH_PUSH_NOTIFICATIONS_DEFAULT_SYSTEM_TENANT_NAME}" \
 '{
@@ -69,7 +69,9 @@ properties_config=$($JQ_CMD -n \
     "value": ($create_platform_whitelist | split(",") )
   },
   ".push-push-notifications.api_db_encryption_key": {
-    "value": $push_push_notifications_api_db_encryption_key
+    "value": {
+      "secret": $push_push_notifications_api_db_encryption_key
+    }
   },
   ".push-push-notifications.default_system_tenant_name": {
     "value": $push_push_notifications_default_system_tenant_name
