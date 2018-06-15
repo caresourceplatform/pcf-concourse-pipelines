@@ -40,13 +40,13 @@ properties_config=$($JQ_CMD -n \
   --arg mysql_external_password "${MYSQL_EXTERNAL_PASSWORD}" \
   --arg mysql_external_port "${MYSQL_EXTERNAL_PORT}" \
   --arg mysql_external_username "${MYSQL_EXTERNAL_USERNAME}" \
-  --arg mysql_internal_service_plan "${MYSQL_INTERNAL_SERVICE_PLAN:-"push"}" \
+  --arg mysql_internal_service_plan "${MYSQL_INTERNAL_SERVICE_PLAN:-"100mb"}" \
   --arg redis_analytics "${REDIS_ANALYTICS:-"Redis Service"}" \
   --arg redis_analytics_external_db_number "${REDIS_ANALYTICS_EXTERNAL_DB_NUMBER:-0}" \
   --arg redis_analytics_external_host "${REDIS_ANALYTICS_EXTERNAL_HOST}" \
   --arg redis_analytics_external_password "${REDIS_ANALYTICS_EXTERNAL_PASSWORD}" \
   --arg redis_analytics_external_port "${REDIS_ANALYTICS_EXTERNAL_PORT}" \
-  --arg redis_analytics_internal_service_plan "${REDIS_ANALYTICS_INTERNAL_SERVICE_PLAN:-"push"}" \
+  --arg redis_analytics_internal_service_plan "${REDIS_ANALYTICS_INTERNAL_SERVICE_PLAN:-"cache-small"}" \
   --arg push_push_notifications_api_db_encryption_key "${PUSH_PUSH_NOTIFICATIONS_API_DB_ENCRYPTION_KEY}" \
   --arg push_push_notifications_default_system_tenant_name "${PUSH_PUSH_NOTIFICATIONS_DEFAULT_SYSTEM_TENANT_NAME}" \
 '{
