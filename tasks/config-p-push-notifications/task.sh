@@ -69,9 +69,7 @@ properties_config=$($JQ_CMD -n \
     "value": ($create_platform_whitelist | split(",") )
   },
   ".push-push-notifications.api_db_encryption_key": {
-    "value": {
-      "secret": $push_push_notifications_api_db_encryption_key
-    }
+    "value": $push_push_notifications_api_db_encryption_key
   },
   ".push-push-notifications.default_system_tenant_name": {
     "value": $push_push_notifications_default_system_tenant_name
