@@ -59,7 +59,7 @@ redis_analytics_external_db_number: 0
 redis_analytics_external_host: ''
 redis_analytics_external_password: ''
 redis_analytics_external_port: ''
-redis_analytics_internal_service_plan: 1024MB
+redis_analytics_internal_service_plan: dedicated-vm
 push_push_notifications_api_db_encryption_key: ((push_push_notifications_api_db_encryption_key))
 push_push_notifications_default_system_tenant_name: ''
 

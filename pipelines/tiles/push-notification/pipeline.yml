@@ -28,12 +28,12 @@ resources:
     repository: jq
     access_token: ((git_token)) ## Optional: Removing this will cause you to hit the rate limit
 
-- name: cf
-  type: github-release
-  source:
-    user: cloudfoundry
-    repository: cli
-    access_token: ((git_token)) ## Optional: Removing this will cause you to hit the rate limit
+#- name: cf
+#  type: github-release
+#  source:
+#    user: cloudfoundry
+#    repository: cli
+#    access_token: ((git_token)) ## Optional: Removing this will cause you to hit the rate limit
 
 - name: pipelines-repo
   type: git
