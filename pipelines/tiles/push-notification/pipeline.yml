@@ -28,6 +28,13 @@ resources:
     repository: jq
     access_token: ((git_token)) ## Optional: Removing this will cause you to hit the rate limit
 
+- name: cf
+  type: github-release
+  source:
+    user: cloudfoundry
+    repository: cli
+    access_token: ((git_token)) ## Optional: Removing this will cause you to hit the rate limit
+
 - name: pipelines-repo
   type: git
   source:
@@ -216,10 +223,6 @@ jobs:
       REDIS_ANALYTICS_INTERNAL_SERVICE_PLAN: ((redis_analytics_internal_service_plan))
       PUSH_PUSH_NOTIFICATIONS_API_DB_ENCRYPTION_KEY: ((push_push_notifications_api_db_encryption_key))
       PUSH_PUSH_NOTIFICATIONS_DEFAULT_SYSTEM_TENANT_NAME: ((push_push_notifications_default_system_tenant_name))
-      PUSH_PUSH_NOTIFICATIONS_INSTANCES: ((push_push_notifications_instances))
-      PUSH_PUSH_NOTIFICATIONS_INSTANCE_TYPE: ((push_push_notifications_instance_type))
-      DELETE_PUSH_NOTIFICATIONS_INSTANCES: ((delete_push_notifications_instances))
-      DELETE_PUSH_NOTIFICATIONS_INSTANCE_TYPE: ((delete_push_notifications_instance_type))
 
 - name: disable-errands
   plan:

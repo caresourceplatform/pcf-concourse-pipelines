@@ -53,19 +53,15 @@ mysql_external_host: ''
 mysql_external_password: ''
 mysql_external_port: ''
 mysql_external_username: ''
-mysql_internal_service_plan: push
+mysql_internal_service_plan: 100mb
 redis_analytics: Redis Service
 redis_analytics_external_db_number: 0
 redis_analytics_external_host: ''
 redis_analytics_external_password: ''
 redis_analytics_external_port: ''
-redis_analytics_internal_service_plan: dedicated-vm
+redis_analytics_internal_service_plan: 1024MB
 push_push_notifications_api_db_encryption_key: ((push_push_notifications_api_db_encryption_key))
 push_push_notifications_default_system_tenant_name: ''
-push_push_notifications_instances: ''
-push_push_notifications_instance_type: ''
-delete_push_notifications_instances: ''
-delete_push_notifications_instance_type: ''
 
 errands_to_disable: # (broker-registrar|multitenant-smoke-tests|register-on-demand-service-broker|dedicated-instance-smoke-tests|upgrade-all-service-instances)
 
