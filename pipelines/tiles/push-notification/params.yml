@@ -54,12 +54,12 @@ mysql_external_password: ''
 mysql_external_port: ''
 mysql_external_username: ''
 mysql_internal_service_plan: 100mb
-redis_analytics: p.redis
+redis_analytics: Redis Service
 redis_analytics_external_db_number: 0
 redis_analytics_external_host: ''
 redis_analytics_external_password: ''
 redis_analytics_external_port: ''
-redis_analytics_internal_service_plan: cache-small
+redis_analytics_internal_service_plan: ''
 push_push_notifications_api_db_encryption_key: ((push_push_notifications_api_db_encryption_key))
 push_push_notifications_default_system_tenant_name: ''
 
