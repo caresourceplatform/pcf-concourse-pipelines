@@ -1,8 +1,8 @@
 pivnet_token: ((pivnet_token)) # [R] PivNet Access Token
-git_token: ((github_token)) # [R] Your github token
+git_token: ((git_token)) # [R] Your github token
 git_url: https://github.com/rahul-kj/pcf-concourse-pipelines # [R] Pipelines github repo
 git_branch: master
-git_username: ((github_username)) # [R] Your github username
+git_username: ((git_username)) # [R] Your github username
 
 iaas_type: vsphere-esxi # azure-hyperv|vsphere-esxi|aws-xen-hvm|openstack-kvm|vcloud-esxi|google-kvm
 
@@ -31,6 +31,8 @@ singleton_jobs_az: ((singleton_jobs_az)) # [R] Place singleton jobs in an AZ
 other_azs: ((other_azs)) # [R] AZ's to balance other jobs
 network_name: ((network_name))  # [R] Tile network name
 
+dependency_product_tiles: 'cf'
+
 isolated_diego_cell_executor_disk_capacity: ''
 isolated_diego_cell_executor_memory_capacity: ''
 isolated_diego_cell_insecure_docker_registry_list: ''
@@ -53,7 +55,9 @@ haproxy_forward_tls: disable # enable|disable
 haproxy_forward_tls_enable_backend_ca: ''
 haproxy_max_buffer_size: 16384
 haproxy_ssl_ciphers: ''
-isolation_segment_domains: '' # cfapps-ext.env.company.com
+
+# comma seperated list of comma separated domains usually preceded by a *
+isolation_segment_domains: '' # *.cfapps-ext.env.company.com,*.cfapps-web.env.company.com
 networking_poe_ssl_name: ''
 networking_poe_ssl_cert_pem: ''
 networking_poe_ssl_cert_private_key_pem: ''
@@ -88,14 +92,4 @@ isolated_router_instance_type: micro
 isolated_diego_cell_instances: 3
 isolated_diego_cell_instance_type: xlarge.disk
 
-
-
 errands_to_disable:
-
-concourse_url: ((concourse_url))
-concourse_user: ((concourse_user))
-concourse_pwd: ((concourse_pwd))
-
-pipeline-name: install-isolation-segment
-team-name: ((team-name))
-upgrade-pipeline-name: upgrade-isolation-segment

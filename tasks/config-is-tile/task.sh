@@ -12,6 +12,22 @@ OM_CMD=./om-cli/om-linux
 chmod +x ./jq/jq-linux64
 JQ_CMD=./jq/jq-linux64
 
+if [[ -z "$NETWORKING_POE_SSL_CERT_PEM" ]]; then
+  DOMAINS=$(echo $ISOLATION_SEGMENT_DOMAINS | jq --raw-input -c '{"domains": (. | split(" "))}')
+
+  CERTIFICATES=`$OM_CMD -t https://$OPS_MGR_HOST -u $OPS_MGR_USR -p $OPS_MGR_PWD -k curl -p "/api/v0/certificates/generate" -x POST -d "$DOMAINS"`
+
+  export NETWORKING_POE_SSL_NAME="GENERATED-CERTS"
+  export NETWORKING_POE_SSL_CERT_PEM=`echo $CERTIFICATES | jq --raw-output '.certificate'`
+  export NETWORKING_POE_SSL_CERT_PRIVATE_KEY_PEM=`echo $CERTIFICATES | jq --raw-output '.key'`
+
+  echo "Using self signed certificates generated using Ops Manager..."
+elif [[ "$NETWORKING_POE_SSL_CERT_PEM" =~ "\\r" ]]; then
+  echo "No tweaking needed"
+else
+  export NETWORKING_POE_SSL_CERT_PEM=$(echo "$NETWORKING_POE_SSL_CERT_PEM" | awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}')
+  export NETWORKING_POE_SSL_CERT_PRIVATE_KEY_PEM=$(echo "$NETWORKING_POE_SSL_CERT_PRIVATE_KEY_PEM" | awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}')
+fi
 
 common_properties=$($JQ_CMD -n \
 --arg enable_grootfs "${ENABLE_GROOTFS:-true}" \
