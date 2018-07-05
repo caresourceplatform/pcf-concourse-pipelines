@@ -74,9 +74,9 @@ params:
   ISOLATED_DIEGO_CELL_INSTANCE_TYPE:
 
 inputs:
-  - name: pipelines-repo
+  - name: cs-pipelines-repo
   - name: om-cli
   - name: jq
 
 run:
-  path: pipelines-repo/tasks/config-is-tile/task.sh
+  path: cs-pipelines-repo/tasks/config-is-tile/task.sh
