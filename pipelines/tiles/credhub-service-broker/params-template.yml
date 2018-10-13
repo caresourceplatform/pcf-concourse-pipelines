@@ -14,46 +14,28 @@ ops_mgr_pwd: ((ops_mgr_pwd))              # [R] Ops Manager admin password
 
 debug: false
 
-product_name: p-event-alerts
-product_identifier: p-event-alerts
-product_version: ^1\.2\..*$
+product_name: credhub-service-broker
+product_identifier: credhub-service-broker
+product_version: ^1\.0\..*$
 
 singleton_jobs_az: ((singleton_jobs_az))  # [R] Place singleton jobs in an AZ
 other_azs: ((other_azs))                  # [R] Balance other jobs in AZ's (comma-separated)
 network_name: ((network_name))            # [R] Tile network name
 
-dependency_product_tiles: 'cf,pivotal-mysql'
+dependency_product_tiles: 'cf'
 
 product_properties: |
   ---
-  ".properties.mysql":
-    value: MySQL Service                                                  # "MySQL Service"|"External DB"
-  ".properties.mysql.internal.plan_name":
-    value: db-small
-  ".properties.mysql.external.host":
-    value:
-  ".properties.mysql.external.port":
-    value:
-  ".properties.mysql.external.username":
-    value:
-  ".properties.mysql.external.password":
-    value:
-      secret:
-  ".properties.mysql.external.database":
-    value:
-  ".properties.smtp_selector":
-    value: Disabled                                                       # Enabled | Disabled
-  ".properties.smtp_selector.enabled.smtp_from":
-    value:
-  ".properties.smtp_selector.enabled.smtp_address":
-    value:
-  ".properties.smtp_selector.enabled.smtp_port":
-    value:
-  ".properties.smtp_selector.enabled.smtp_credentials":
-    value:
-      password:
-  ".deploy-pcf-event-alerts.instance_count":
-    value: 1
+  ".properties.org":
+    value: credhub-service-broker-org
+  ".properties.space":
+    value: credhub-service-broker-space
+  ".properties.apply_open_security_group":
+    value: false
+  ".properties.allow_paid_service_plans":
+    value: false
+  ".properties.credhub_broker_enable_global_access_to_plans":
+    value: true
 
 product_resources: |
   ---

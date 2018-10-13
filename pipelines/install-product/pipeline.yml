@@ -6,7 +6,6 @@ resource_types:
     tag: latest-final
 
 resources:
-
 - name: om-cli
   type: github-release
   source:
@@ -19,6 +18,20 @@ resources:
   source:
     user: pivotal-cf
     repository: pivnet-cli
+    access_token: ((git_token)) ## Optional: Removing this will cause you to hit the rate limit
+
+- name: jq
+  type: github-release
+  source:
+    user: stedolan
+    repository: jq
+    access_token: ((git_token)) ## Optional: Removing this will cause you to hit the rate limit
+
+- name: tile-config-convertor
+  type: github-release
+  source:
+    user: rahul-kj
+    repository: tile-config-convertor
     access_token: ((git_token)) ## Optional: Removing this will cause you to hit the rate limit
 
 - name: pipelines-repo
@@ -36,36 +49,54 @@ resources:
     product_slug: ((product_name))
     product_version: ((product_version))
 
-- name: time-schedule
-  type: time
-  source: {interval: 24h}
-
-- name: jq
-  type: github-release
-  source:
-    user: stedolan
-    repository: jq
-    access_token: ((git_token))
-
 jobs:
-- name: scheduler
+
+- name: delete-product
   plan:
-  - get: time-schedule
-    trigger: true
-  - get: pivnet-product
+  - aggregate:
+    - get: pipelines-repo
+    - get: pivnet-product
+      resource: pivnet-product
+      params:
+        globs:
+        - "*.pivotal"
+    - get: om-cli
+      params:
+        globs:
+        - "*-linux"
+    - get: jq
+      params:
+        globs:
+        - "*linux64*"
+
+  - task: unstage-tile
+    file: pipelines-repo/tasks/unstage-product/task.yml
     params:
-      globs: []
+      DEBUG: ((debug))
+      OPS_MGR_HOST: ((ops_mgr_host))
+      OPS_MGR_USR: ((ops_mgr_usr))
+      OPS_MGR_PWD: ((ops_mgr_pwd))
+      PRODUCT_IDENTIFIER: ((product_identifier))
+
+  - task: apply-changes
+    file: pipelines-repo/tasks/apply-changes/task.yml
+    params:
+      DEBUG: ((debug))
+      OPS_MGR_HOST: ((ops_mgr_host))
+      OPS_MGR_USR: ((ops_mgr_usr))
+      OPS_MGR_PWD: ((ops_mgr_pwd))
+      APPLY_CHANGES_CONFIG: ""
 
 - name: upload-product
   plan:
   - aggregate:
     - get: pipelines-repo
     - get: pivnet-product
+      resource: pivnet-product
       params:
         globs:
-        - ((product_glob))
+        - "*.pivotal"
       trigger: true
-      passed: [scheduler]
     - get: om-cli
       params:
         globs:
@@ -74,6 +105,10 @@ jobs:
       params:
         globs:
         - "*linux-amd64*"
+    - get: jq
+      params:
+        globs:
+        - "*linux64*"
 
   - task: upload-tile
     file: pipelines-repo/tasks/upload-product/task.yml
@@ -83,32 +118,6 @@ jobs:
       OPS_MGR_USR: ((ops_mgr_usr))
       OPS_MGR_PWD: ((ops_mgr_pwd))
       PIVNET_API_TOKEN: ((pivnet_token))
-
-- name: upload-stemcell
-  plan:
-  - aggregate:
-    - get: pipelines-repo
-      passed: [upload-product]
-    - get: pivnet-product
-      params:
-        globs:
-        - ((product_glob))
-      passed: [upload-product]
-      trigger: true
-    - get: om-cli
-      params:
-        globs:
-        - "*-linux"
-      passed: [upload-product]
-    - get: pivnet-cli
-      params:
-        globs:
-        - "*linux-amd64*"
-      passed: [upload-product]
-    - get: jq
-      params:
-        globs:
-        - "*linux64*"
 
   - task: upload-stemcell
     file: pipelines-repo/tasks/stemcell-uploader/task.yml
@@ -120,32 +129,6 @@ jobs:
       PIVNET_API_TOKEN: ((pivnet_token))
       IAAS_TYPE: ((iaas_type))
       STEMCELL_TYPE: ((stemcell_type))
-
-- name: stage-product
-  plan:
-  - aggregate:
-    - get: pipelines-repo
-      passed: [upload-stemcell]
-    - get: pivnet-product
-      params:
-        globs:
-        - ((product_glob))
-      passed: [upload-stemcell]
-      trigger: true
-    - get: om-cli
-      params:
-        globs:
-        - "*-linux"
-      passed: [upload-stemcell]
-
-  - task: stage-tile
-    file: pipelines-repo/tasks/stage-product/task.yml
-    params:
-      DEBUG: ((debug))
-      OPS_MGR_HOST: ((ops_mgr_host))
-      OPS_MGR_USR: ((ops_mgr_usr))
-      OPS_MGR_PWD: ((ops_mgr_pwd))
-      PRODUCT_IDENTIFIER: ((product_identifier))
 
 - name: generate-product-config
   plan:
@@ -166,8 +149,11 @@ jobs:
       params:
         globs:
         - "*linux64*"
-      passed: [upload-stemcell]
-
+      passed: [upload-product]
+    - get: tile-config-convertor
+      params:
+        globs: ["*linux*"]
+        
   - task: generate-config
     file: pipelines-repo/tasks/generate-config/task.yml
     params:
@@ -177,7 +163,35 @@ jobs:
       OPS_MGR_PWD: ((ops_mgr_pwd))
       PRODUCT_IDENTIFIER: ((product_identifier))
 
-- name: apply-changes
+- name: stage-product
+  plan:
+  - aggregate:
+    - get: pipelines-repo
+      passed: [upload-product]
+    - get: pivnet-product
+      resource: pivnet-product
+      params:
+        globs:
+        - "*.pivotal"
+      passed: [upload-product]
+      trigger: true
+    - get: om-cli
+      params:
+        globs:
+        - "*-linux"
+      passed: [upload-product]
+
+  - task: stage-tile
+    file: pipelines-repo/tasks/stage-product/task.yml
+    params:
+      DEBUG: ((debug))
+      OPS_MGR_HOST: ((ops_mgr_host))
+      OPS_MGR_USR: ((ops_mgr_usr))
+      OPS_MGR_PWD: ((ops_mgr_pwd))
+      PRODUCT_IDENTIFIER: ((product_identifier))
+      DEPENDENCY_PRODUCT_TILES: ((dependency_product_tiles))
+
+- name: config-product
   plan:
   - aggregate:
     - get: pipelines-repo
@@ -197,7 +211,73 @@ jobs:
       params:
         globs:
         - "*linux64*"
-      passed: [upload-stemcell]
+      passed: [upload-product]
+
+  - task: config-tile
+    file: pipelines-repo/tasks/config-product/task.yml
+    params:
+      DEBUG: ((debug))
+      OPS_MGR_HOST: ((ops_mgr_host))
+      OPS_MGR_USR: ((ops_mgr_usr))
+      OPS_MGR_PWD: ((ops_mgr_pwd))
+      PRODUCT_IDENTIFIER: ((product_identifier))
+      PRODUCT_PROPERTIES: ((product_properties))
+      PRODUCT_RESOURCES: ((product_resources))
+      PRODUCT_NETWORK_AZS: ((product_network_azs))
+
+- name: disable-errands
+  plan:
+  - aggregate:
+    - get: pipelines-repo
+      passed: [config-product]
+    - get: om-cli
+      params:
+        globs:
+        - "*om-linux*"
+      passed: [config-product]
+    - get: pivnet-product
+      resource: pivnet-product
+      params:
+        globs: []
+      passed: [config-product]
+      trigger: true
+    - get: jq
+      params:
+        globs:
+        - "*linux64*"
+      passed: [config-product]
+
+  - task: disable-errands
+    file: pipelines-repo/tasks/disable-errands/task.yml
+    params:
+      DEBUG: ((debug))
+      OPS_MGR_HOST: ((ops_mgr_host))
+      OPS_MGR_USR: ((ops_mgr_usr))
+      OPS_MGR_PWD: ((ops_mgr_pwd))
+      PRODUCT_IDENTIFIER: ((product_identifier))
+      ERRANDS: ((errands_to_disable))
+
+- name: apply-changes
+  plan:
+  - aggregate:
+    - get: pipelines-repo
+      passed: [disable-errands]
+    - get: pivnet-product
+      resource: pivnet-product
+      params:
+        globs: []
+      passed: [disable-errands]
+      trigger: true
+    - get: om-cli
+      params:
+        globs:
+        - "*-linux"
+      passed: [disable-errands]
+    - get: jq
+      params:
+        globs:
+        - "*linux64*"
+      passed: [disable-errands]
 
   - task: apply-changes
     file: pipelines-repo/tasks/apply-changes/task.yml

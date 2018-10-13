@@ -8,6 +8,7 @@ git_branch: master
 git_username: ((git_username)) # [R] Your github username
 
 iaas_type: vsphere-esxi # azure-hyperv|vsphere-esxi|aws-xen-hvm|openstack-kvm|vcloud-esxi|google-kvm
+stemcell_type: trusty                         # xenial|trusty
 
 debug: false
 
@@ -25,9 +26,9 @@ dependency_product_tiles: 'cf,p-rabbitmq,pivotal-mysql'
 product_properties: |
   ---
   ".deploy-service-broker.persistence_store_service":
-    value: p-mysql
+    value: p.mysql
   ".deploy-service-broker.persistence_store_service_plan":
-    value: 100mb
+    value: db-small
   ".deploy-service-broker.message_bus_service":
     value: p-rabbitmq
   ".deploy-service-broker.message_bus_service_plan":
@@ -65,3 +66,5 @@ product_network_azs: |
     name:
 
 errands_to_disable:
+
+apply_changes_config:

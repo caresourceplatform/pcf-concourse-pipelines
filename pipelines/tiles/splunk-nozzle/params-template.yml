@@ -8,6 +8,7 @@ git_branch: master
 git_username: ((git_username)) # [R] Your github username
 
 iaas_type: vsphere-esxi # azure-hyperv|vsphere-esxi|aws-xen-hvm|openstack-kvm|vcloud-esxi|google-kvm
+stemcell_type: trusty                         # xenial|trusty
 
 debug: false
 
@@ -102,3 +103,5 @@ product_network_azs: |
     name:
 
 errands_to_disable:
+
+apply_changes_config:

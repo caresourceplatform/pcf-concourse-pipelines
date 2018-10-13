@@ -65,6 +65,10 @@ jobs:
       params:
         globs:
         - "*-linux"
+    - get: jq
+      params:
+        globs:
+        - "*linux64*"
 
   - task: unstage-tile
     file: pipelines-repo/tasks/unstage-product/task.yml
@@ -82,6 +86,7 @@ jobs:
       OPS_MGR_HOST: ((ops_mgr_host))
       OPS_MGR_USR: ((ops_mgr_usr))
       OPS_MGR_PWD: ((ops_mgr_pwd))
+      APPLY_CHANGES_CONFIG: ""
 
 - name: replicate-and-upload-tile
   plan:
@@ -129,6 +134,7 @@ jobs:
       OPS_MGR_PWD: ((ops_mgr_pwd))
       PIVNET_API_TOKEN: ((pivnet_token))
       IAAS_TYPE: ((iaas_type))
+      STEMCELL_TYPE: ((stemcell_type))
 
 - name: stage-product
   plan:
@@ -157,7 +163,37 @@ jobs:
       OPS_MGR_PWD: ((ops_mgr_pwd))
       PRODUCT_IDENTIFIER: ((product_identifier))
       DEPENDENCY_PRODUCT_TILES: ((dependency_product_tiles))
-      
+
+- name: generate-product-config
+  plan:
+  - aggregate:
+    - get: pipelines-repo
+      passed: [stage-product]
+    - get: pivnet-product
+      resource: pivnet-product
+      params:
+        globs: []
+      passed: [stage-product]
+    - get: om-cli
+      params:
+        globs:
+        - "*-linux"
+      passed: [stage-product]
+    - get: jq
+      params:
+        globs:
+        - "*linux64*"
+      passed: [upload-product]
+
+  - task: generate-config
+    file: pipelines-repo/tasks/generate-config/task.yml
+    params:
+      DEBUG: ((debug))
+      OPS_MGR_HOST: ((ops_mgr_host))
+      OPS_MGR_USR: ((ops_mgr_usr))
+      OPS_MGR_PWD: ((ops_mgr_pwd))
+      PRODUCT_IDENTIFIER: ((product_identifier))
+
 - name: config-product
   plan:
   - aggregate:
@@ -289,12 +325,17 @@ jobs:
       resource: pivnet-product
       params:
         globs: []
-      passed: [config-product]
+      passed: [disable-errands]
       trigger: true
     - get: om-cli
       params:
         globs:
         - "*-linux"
+      passed: [disable-errands]
+    - get: jq
+      params:
+        globs:
+        - "*linux64*"
       passed: [disable-errands]
 
   - task: apply-changes
@@ -304,3 +345,4 @@ jobs:
       OPS_MGR_HOST: ((ops_mgr_host))
       OPS_MGR_USR: ((ops_mgr_usr))
       OPS_MGR_PWD: ((ops_mgr_pwd))
+      APPLY_CHANGES_CONFIG: ((apply_changes_config))

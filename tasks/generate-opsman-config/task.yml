@@ -8,15 +8,11 @@ image_resource:
 
 params:
   DEBUG:
-  OPS_MGR_HOST:
-  OPS_MGR_USR:
-  OPS_MGR_PWD:
-  APPLY_CHANGES_CONFIG:
 
 inputs:
+  - name: pivnet-product
   - name: pipelines-repo
-  - name: om-cli
-  - name: jq
+  - name: govc
 
 run:
-  path: pipelines-repo/tasks/apply-changes/task.sh
+  path: pipelines-repo/tasks/generate-opsman-config/task.sh

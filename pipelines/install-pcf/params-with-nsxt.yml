@@ -84,6 +84,15 @@ iaas_configuration: |
   bosh_disk_path: pcf-disks
   nsx_networking_enabled: false
   ssl_verification_enabled: false
+  nsx_networking_enabled: false
+  nsx_mode: nsx-t                             # nsx-t|nsx-v
+  nsx_address:
+  nsx_username:
+  nsx_password:
+  nsx_ca_certificate: |
+    -----BEGIN CERTIFICATE-----
+
+    -----END CERTIFICATE-----
 
 director_configuration: |
   ntp_servers_string:
@@ -216,6 +225,48 @@ resource_configuration: |
     instance_type:
       id: large.cpu
     instances: 4
+
+nsxt_product_properties: |
+  .properties.container_ip_blocks:
+    value:
+    - name:
+      cidr:
+  .properties.enable_snat:
+    value: true
+  .properties.external_ip_pools:
+    value:
+  .properties.foundation_name:
+    value:
+  .properties.log_dropped_traffic:
+    value: true
+  .properties.ncp_debug_log:
+    value: true
+  .properties.nsx_api_ca_cert:
+    value: |
+      -----BEGIN CERTIFICATE-----
+      ...
+      -----END CERTIFICATE-----
+  .properties.nsx_api_managers:
+    value:
+  .properties.nsx_auth:
+    value:
+  .properties.nsx_auth.client_cert.nsx_api_client_cert:
+    value:
+      private_key_pem:
+      cert_pem:
+  .properties.nsx_auth.simple.nsx_api_password:
+    value:
+      secret:
+  .properties.nsx_auth.simple.nsx_api_user:
+    value:
+  .properties.nsx_node_agent_debug_log:
+    value: true
+  .properties.overlay_tz:
+    value:
+  .properties.subnet_prefix:
+    value:
+  .properties.tier0_router:
+    value:
 
 generate_certs: false
 

@@ -5,6 +5,7 @@ git_branch: master
 git_username: ((git_username)) # [R] Your github username
 
 iaas_type: vsphere-esxi # azure-hyperv|vsphere-esxi|aws-xen-hvm|openstack-kvm|vcloud-esxi|google-kvm
+stemcell_type: trusty                         # xenial|trusty
 
 debug: false # Set to true if you want to see all the tasks output. This will also show all the secrets and certs, so think twice
 
@@ -226,3 +227,5 @@ product_resources: |
       size_mb: "5120"
 
 errands_to_disable: # "broker-registrar,smoke-tests,register-on-demand-broker,on-demand-broker-smoke-tests,upgrade-all-service-instances,broker-deregistrar,delete-all-service-instances-and-deregister-broker"
+
+apply_changes_config:
