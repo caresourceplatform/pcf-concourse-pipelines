@@ -183,7 +183,7 @@ jobs:
       params:
         globs:
         - "*linux64*"
-      passed: [upload-product]
+      passed: [replicate-and-upload-tile]
 
   - task: generate-config
     file: pipelines-repo/tasks/generate-config/task.yml
