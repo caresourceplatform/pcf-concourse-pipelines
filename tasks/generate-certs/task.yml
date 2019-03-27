@@ -1,5 +1,4 @@
 ---
-
 platform: linux
 
 image_resource:
@@ -8,11 +7,14 @@ image_resource:
 
 params:
   DEBUG:
+  DOMAINS:
+  ENV_FILE: env.yml
 
 inputs:
-  - name: pivnet-product
   - name: pipelines-repo
-  - name: govc
+  - name: om-cli
+  - name: jq
+  - name: env
 
 run:
-  path: pipelines-repo/tasks/generate-opsman-config/task.sh
+  path: pipelines-repo/tasks/generate-certs/task.sh

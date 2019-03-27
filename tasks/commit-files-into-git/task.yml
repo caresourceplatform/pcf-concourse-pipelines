@@ -10,13 +10,15 @@ params:
   DEBUG:
   CI_USERNAME:
   CI_EMAIL_ADDRESS:
+  GIT_COMMIT_MESSAGE:
 
 inputs:
   - name: pipelines-repo
-  - name: concourse-trigger-gist
+  - name: git-repo
+  - name: src-dir
 
 outputs:
-  - name: updated-concourse-trigger-gist
+  - name: git-repo-updated
 
 run:
-  path: pipelines-repo/tasks/gist-update/task.sh
+  path: pipelines-repo/tasks/commit-files-into-git/task.sh
