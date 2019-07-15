@@ -63,7 +63,7 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.gz]"
+        - "*-linux"
     - get: jq
       params:
         globs:
@@ -118,7 +118,9 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.gz]"
+        - "*-linux"
+      version:
+        tag: 1.2.0
     - get: pivnet-cli
       params:
         globs:
@@ -177,7 +179,7 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.gz]"
+        - "*-linux"
       passed: [stage-product]
     - get: jq
       params:
@@ -221,7 +223,7 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.gz]"
+        - "*-linux"
       passed: [upload-product]
 
   - task: create-opsman-env
@@ -257,7 +259,7 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.gz]"
+        - "*-linux"
       passed: [stage-product]
     - get: jq
       params:
@@ -307,7 +309,7 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.gz]"
+        - "*-linux"
       passed: [config-product]
     - get: jq
       params:
