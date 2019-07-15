@@ -117,6 +117,7 @@ jobs:
         - "*.pivotal"
       trigger: true
     - get: om-cli
+      version: { tag: '1.2.0' }
       params:
         globs:
         - "*-linux"
