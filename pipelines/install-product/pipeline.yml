@@ -119,8 +119,7 @@ jobs:
       params:
         globs:
         - "*-linux"
-      version:
-        tag: 1.2.0
+      tag: 1.2.0
     - get: pivnet-cli
       params:
         globs:
