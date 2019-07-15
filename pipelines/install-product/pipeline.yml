@@ -12,6 +12,7 @@ resources:
     user: pivotal-cf
     repository: om
     access_token: ((git_token)) ## Optional: Removing this will cause you to hit the rate limit
+    tag: 1.2.0
 
 - name: pivnet-cli
   type: github-release
@@ -119,7 +120,6 @@ jobs:
       params:
         globs:
         - "*-linux"
-      tag: 1.2.0
     - get: pivnet-cli
       params:
         globs:
