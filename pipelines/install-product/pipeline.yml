@@ -13,6 +13,7 @@ resources:
     repository: om
     tag: 0.38.0
     access_token: ((git_token)) ## Optional: Removing this will cause you to hit the rate limit
+    tag_filter: "1.2.*"
 
 - name: pivnet-cli
   type: github-release
@@ -117,6 +118,7 @@ jobs:
         - "*.pivotal"
       trigger: true
     - get: om-cli
+      version: { tag: '1.2.0' }
       params:
         globs:
         - "*-linux"
