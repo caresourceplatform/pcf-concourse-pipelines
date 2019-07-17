@@ -7,7 +7,7 @@ else
 fi
 
 ls
-ls om-cli/
+ls om-cli/body
 
 mv om-cli/om-linux* om-cli/om-linux
 
