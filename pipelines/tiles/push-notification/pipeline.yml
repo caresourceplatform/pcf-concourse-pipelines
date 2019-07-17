@@ -66,7 +66,7 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.tar.gz]"
+        - "*-linux*[^.tar.gz]"
 
   - task: unstage-tile
     file: pipelines-repo/tasks/unstage-product/task.yml
@@ -98,7 +98,7 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.tar.gz]"
+        - "*-linux*[^.tar.gz]"
     - get: pivnet-cli
       params:
         globs:
@@ -142,7 +142,7 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.tar.gz]"
+        - "*-linux*[^.tar.gz]"
       passed: [upload-product]
 
   - task: stage-tile
@@ -169,7 +169,7 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.tar.gz]"
+        - "*-linux*[^.tar.gz]"
       passed: [stage-product]
     - get: jq
       params:
@@ -270,7 +270,7 @@ jobs:
     - get: om-cli
       params:
         globs:
-        - "*-linux[^.tar.gz]"
+        - "*-linux*[^.tar.gz]"
       passed: [disable-errands]
 
   - task: apply-changes
