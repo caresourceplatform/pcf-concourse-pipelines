@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
+mv om-cli/om-linux* om-cli/om-linux
+
 chmod +x om-cli/om-linux
 OM_CMD=./om-cli/om-linux
 
