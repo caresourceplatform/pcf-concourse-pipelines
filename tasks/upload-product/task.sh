@@ -6,8 +6,8 @@ else
   set -e
 fi
 
-ls
-ls om-cli/body
+ls -l
+ls -l om-cli
 
 mv om-cli/om-linux* om-cli/om-linux
 
