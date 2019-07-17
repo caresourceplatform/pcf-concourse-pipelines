@@ -6,6 +6,9 @@ else
   set -e
 fi
 
+ls
+ls om-cli/
+
 mv om-cli/om-linux* om-cli/om-linux
 
 chmod +x om-cli/om-linux
